@@ -12,7 +12,7 @@ final products = [
     'title': 'Jordan Shoes',
     'price': 420.69,
     'imageUrl': 'assets/images/shoes_4.png',
-    'company': 'Nike',
+    'company': 'Jordan',
     'sizes': [8, 9, 10],
   },
   {

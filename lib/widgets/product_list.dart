@@ -18,6 +18,8 @@ class _ProductListState extends State<ProductList> {
     "Bata",
   ];
 
+  List localProducts = products;
+
   late String selectedFilter;
 
   @override
@@ -72,6 +74,14 @@ class _ProductListState extends State<ProductList> {
                     onTap: () {
                       setState(() {
                         selectedFilter = filter;
+                        if (filter == "All") {
+                          localProducts = products;
+                        } else {
+                          localProducts = products.where((product) {
+                            return product['company'] == filter;
+                          }).toList();
+                        }
+                        // print(localProducts);
                       });
                     },
                     child: Chip(
@@ -104,9 +114,9 @@ class _ProductListState extends State<ProductList> {
           SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
-                itemCount: products.length,
+                itemCount: localProducts.length,
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final product = localProducts[index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0),
                     child: GestureDetector(
